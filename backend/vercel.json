@@ -2,9 +2,9 @@
     "version": 2,
     "name": "simple-api",
     "builds": [
-        { "src": "main.py", "use": "@vercel/python" }
+        { "src": "server.py", "use": "@vercel/python" }
     ],
     "routes": [
-        { "src": "/(.*)", "dest": "/main.py" }
+        { "src": "/(.*)", "dest": "/server.py" }
 ]
 }
