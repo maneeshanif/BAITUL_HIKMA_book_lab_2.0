@@ -37,7 +37,15 @@ st.markdown(
 
 image_path = os.path.abspath("./images/library2.jpg")
 
-st.image(image_path, width=630)
+
+# Check if the file exists
+if os.path.exists(image_path):
+    st.image(image_path, width=630)
+else:
+    st.warning(f"Image not found: {image_path}. Using a placeholder instead.")
+    st.image("https://media.istockphoto.com/id/1015149600/photo/book-hall-in-library.jpg?s=2048x2048&w=is&k=20&c=un9XrdxJMA4Lpa5s91IfWlUSiujtbEwVx8ewxlxBZQo=", width=630)  # Placeholder image
+
+# st.image(image_path, width=630)
 
 
 # st.image("./images/library2.jpg", width=630 )
