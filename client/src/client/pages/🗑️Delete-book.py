@@ -1,12 +1,13 @@
 import streamlit as st
 import requests
 import time
-import os
-from dotenv import load_dotenv
+# import os
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-BASE_URL = os.getenv("BASE_URL" ,"")
+# BASE_URL = os.getenv("BASE_URL" ,"")
+BASE_URL="https://baitulhikmabooklab20-production.up.railway.app/"
 
 # Delete a book
 

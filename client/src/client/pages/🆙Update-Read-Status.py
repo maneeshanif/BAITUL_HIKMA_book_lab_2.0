@@ -1,12 +1,13 @@
 import streamlit as st
 import requests
-import os
+# import os
 import time
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-BASE_URL = os.getenv("BASE_URL" ,"")
+# BASE_URL = os.getenv("BASE_URL" ,"")
+BASE_URL="https://baitulhikmabooklab20-production.up.railway.app/"
 
 
 
