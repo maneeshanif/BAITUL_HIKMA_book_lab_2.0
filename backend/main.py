@@ -6,8 +6,21 @@ from typing import List,Any
 from sqlalchemy import func  
 from fastapi.middleware.cors import CORSMiddleware
 from model import Book
+from contextlib import asynccontextmanager
+from database import create_db
 
-app = FastAPI()
+# app = FastAPI()
+
+# Ensure tables exist before handling requests
+# ✅ Use lifespan for startup event
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("🚀 Initializing Database...")
+    await create_db()  # Ensures tables exist before handling requests
+    print("✅ Database initialized successfully")
+    yield  # Application starts here
+
+app = FastAPI(lifespan=lifespan)
 
 # Middleware for CORS
 app.add_middleware(
