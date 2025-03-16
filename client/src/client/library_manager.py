@@ -1,5 +1,6 @@
 
 import streamlit as st
+import os
 
 st.set_page_config(page_title="BAITUL_HIKMA_2.0",page_icon="📖")
 st.title("📚 BAITUL HIKMA")
@@ -32,7 +33,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.image("./images/library2.jpg", width=630 )
+
+
+image_path = os.path.abspath("./images/library2.jpg")
+st.image(image_path, width=630)
+
+
+# st.image("./images/library2.jpg", width=630 )
 
 # Features and Tech Stack Section
 st.markdown(
