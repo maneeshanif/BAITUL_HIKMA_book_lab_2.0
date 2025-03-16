@@ -36,6 +36,7 @@ st.markdown(
 
 
 image_path = os.path.abspath("./images/library2.jpg")
+
 st.image(image_path, width=630)
 
 
