@@ -10,12 +10,17 @@ WORKDIR /app
 RUN pip install uv
 
 # Copy the application files
-COPY . .
+# COPY . .
+COPY backend/requirements.txt .
 
 # Install dependencies using uv
 # RUN uv pip install -r requirements.txt
 # If you're using Docker, it's usually best not to use a virtual environment inside the container because Docker itself provides isolation. So the second option (--system) is generally preferred.
-RUN uv pip install --system -r requirements.txt
+# RUN uv pip install --system -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application files
+COPY backend/ .
 
 
 # Expose FastAPI default port
