@@ -1,0 +1,1 @@
+web: .venv/bin/python -m streamlit run client/src/client/library_manager.py --server.port $PORT
