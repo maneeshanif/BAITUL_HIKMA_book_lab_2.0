@@ -17,8 +17,7 @@ engine = create_async_engine(DB_CONNECTION_STRING, echo=True, future=True)
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,
     class_=AsyncSession,
-    expire_on_commit=False,
-    pool_pre_ping=True, pool_size=5, max_overflow=10
+    expire_on_commit=False
 )
 
 # ✅ Async function to create database tables
