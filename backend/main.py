@@ -8,17 +8,31 @@ from fastapi.middleware.cors import CORSMiddleware
 from model import Book
 from contextlib import asynccontextmanager
 from database import create_db
+import asyncio
 
 # app = FastAPI()
 
 # Ensure tables exist before handling requests
 # ✅ Use lifespan for startup event
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     print("🚀 Initializing Database...")
+#     await create_db()  # Ensures tables exist before handling requests
+#     print("✅ Database initialized successfully")
+#     yield  # Application starts here
+
+# version 2
+# FastAPI app with lifespan and db_ready event
+db_ready = asyncio.Event()  # Signals when DB is ready
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 Initializing Database...")
-    await create_db()  # Ensures tables exist before handling requests
+    await create_db()  # Create tables
+    db_ready.set()  # Mark DB as ready
     print("✅ Database initialized successfully")
-    yield  # Application starts here
+    yield  # Application runs here
+    print("🛑 Shutting down...")
 
 app = FastAPI(lifespan=lifespan)
 
@@ -30,6 +44,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Dependency to ensure DB is ready
+async def wait_for_db():
+    await db_ready.wait()  # Block until DB is ready
 
 # Add a new Book
 @app.post("/add_book/")
