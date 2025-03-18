@@ -29,6 +29,7 @@ db_ready = asyncio.Event()  # Signals when DB is ready
 async def lifespan(app: FastAPI):
     print("🚀 Initializing Database...")
     await create_db()  # Create tables
+    await asyncio.sleep(2)  # Wait 2 seconds for Neon
     db_ready.set()  # Mark DB as ready
     print("✅ Database initialized successfully")
     yield  # Application runs here
